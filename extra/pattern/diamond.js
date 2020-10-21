@@ -1,4 +1,4 @@
-function createequilateral(n){
+function creatediamond(n){
     let s = "";
     let j = n;
     for(let i = 1; i<=n; i++){
@@ -16,4 +16,4 @@ function createequilateral(n){
 }
 
 n = process.argv[2]
-createequilateral(n);
+creatediamond(n);
