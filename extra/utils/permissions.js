@@ -1,19 +1,50 @@
-function createequilateral(n){
-    let s = "";
-    let j = n;
-    for(let i = 1; i<=n; i++){
-        s=" ".repeat(j);
-        console.log(s,"* ".repeat(i));
-        s="";
-        j--;
-    }
-    for(let i = n; i>=1; i--){
-        s=" ".repeat(j);
-        console.log(s," *".repeat(i));
-        s="";
-        j++;
-    }
+let check;
+let permissions =
+{
+'getUsers': {
+all: ['head-trainer'],
+read : ['trainee', 'trainer'],
+write : ['trainer'],
+Delete: [],
+},
+'getUser1': {
+all: ['head-trainer'],
+read : ['trainee', 'trainer'],
+write : ['trainer'],
+Delete: ['trainee'],
+}
+}
+const {getUsers,getUser1}= permissions;
+let f;
+function hasPermission(moduleName,role,permissionType)
+{
+const {all,read,write,Delete}=moduleName;
+f = all.includes(role)
+
+if(f==true)
+{
+return true
+}
+else
+{
+if(permissionType=="read")
+{
+f=read.includes(role)
+return f;
+}
+else if(permissionType=="write"){
+f=write.includes(role);
+return f;
+}
+else if(permissionType=="Delete"){
+f=Delete.includes(role)
+return f;
 }
 
-n = process.argv[2]
-createequilateral(n); 
+}
+
+}
+check = hasPermission(getUsers,"trainee","read");
+console.log(check);
+check = hasPermission(getUser1,"trainer","Delete");
+console.log(check);
