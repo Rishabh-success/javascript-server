@@ -5,3 +5,4 @@ console.log("inside config",envVars);
 const config = envVars.parsed;
 export default config;
 Object.freeze(config);
+
