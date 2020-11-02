@@ -1,4 +1,4 @@
-export default function creatediamond(n)
+export default function createDiamond(n)
 
 {
     // using for white space
