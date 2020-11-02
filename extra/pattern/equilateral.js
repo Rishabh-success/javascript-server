@@ -13,5 +13,3 @@ export default function createequilatral(n)
     }
 }
 
-
-//createequilatral(10)
