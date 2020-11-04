@@ -1,44 +1,31 @@
-let users = [
+const users = [
     {
-    traineeEmail: 'trainee1@successive.tech',
-    reviewerEmail: 'reviewer1@successive.tech',
-    },
-    {
-    traineeEmail: 'trainee2@successive.tech',
-    reviewerEmail: 'reviewer2@succesive.tech',
-    }
-    ];
-    
-    function validateEmail(email){
-    let pattern = /^([a-zA-Z0-9\.-]+)@(successive).(tech)$/;
-    if(pattern.test(email)){
-    return true;
-    }
-    else{
-    return false;
-    }
-    }
-    
-    function validateUsers(users){
+        traineeEmail: 'trainee1@successive.tech',
+        reviewerEmail: 'reviewer1@successive.tech',
+        },
+        {
+        traineeEmail: 'trainee2successive.tech',
+        reviewerEmail: 'reviewer2@succesive.tech',
+        }   
+];
+
+function validateEmail(email) {
+    const pattern = /^([a-zA-Z0-9\.-]+)@(successive).(tech)$/;
+    return (pattern.test(email));
+}
+function validateUsers(userData) {
     let valid = 0;
-    let invalid = 0;
-    users.forEach(element => {
-    if(validateEmail(element.traineeEmail) === true){
-    console.log("Valid user :", element.traineeEmail);
-    valid=valid+1;
-    }else{
-    console.log("InValid user :", element.traineeEmail);
-    invalid = invalid+1;
-    }
-    if(validateEmail(element.reviewerEmail) === true){
-    console.log("Valid user :", element.reviewerEmail);
-    valid=valid+1;
-    }else{
-    console.log("InValid user :", element.reviewerEmail);
-    invalid = invalid+1;
-    }
+    let invalid= 0;
+    userData.forEach(userData => {
+        const { traineeEmail, reviewerEmail } = userData;
+        if (validateEmail(traineeEmail) && validateEmail(reviewerEmail)) {
+           valid+=1;
+        } else {
+            invalid+=1;
+        }
     });
+    console.log(users);
     console.log("Number of valid user",valid);
     console.log("Number of Invalid user", invalid);
-    }
-    validateUsers(users);
+}
+validateUsers(users);
