@@ -1,4 +1,4 @@
-import creatediamond from './diamond';
-import createequilatral from './equilateral';
+import diamond from './diamond.js';
+import equilateral from './equilateral.js'
 
-export {creatediamond,createequilatral};
+export { diamond, equilateral }

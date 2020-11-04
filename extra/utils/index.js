@@ -1,4 +1,4 @@
-import hasPermission from './Permission'
-import validateUsers from './Validation'
+import hasPermissions from './permissions.js'
+import validateUsers from './validation.js'
 
-export {hasPermission,validateUsers};
+export {hasPermissions ,validateUsers}

@@ -1,31 +1,16 @@
-import validateEmail from './helpers'
+import validateEmail from '../utils/helpers'
 
-export default function validateUsers(users){
-
-    let countValid=0;
-    let countInvalid=0;
-    let a =[];
-    let b =[];
-    users.forEach(function(item){
-        const {traineeEmail, reviewerEmail} = item;
-        if(validateEmail(traineeEmail)){
-            a.push(traineeEmail);
-            countValid++;
+export default function validateUsers(userData) {
+    let validUser = [];
+    let invalidUser = [];
+    userData.forEach(userData => {
+        const { traineeEmail, reviewerEmail } = userData;
+        if (validateEmail(traineeEmail) && validateEmail(reviewerEmail)) {
+            validUser.push(userData);
+        } else {
+            invalidUser.push(userData);
         }
-        else{
-            b.push(traineeEmail);
-            countInvalid++;
-        }
-        if(validateEmail(reviewerEmail)){
-            a.push(reviewerEmail);
-            countValid++;
-        }
-        else{
-            b.push(reviewerEmail);
-            countInvalid++;
-        }
-    })
-    console.log("Valid is :"+a);
-    console.log("invalid is :" +b);
-    console.log("Valid: "+countValid+" , Invalid: "+countInvalid);
-};
+    });
+    console.log([validUser.length] + " are valid users:", validUser);
+    console.log([invalidUser.length] + " are invalid users:", invalidUser);
+}

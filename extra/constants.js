@@ -1,20 +1,20 @@
+export const permissions =
+ {
+ 'getUsers': {
+ all: ['head-trainer'],
+ read : ['trainee', 'trainer'],
+ write : ['trainer'],
+ Delete: [],
+ }
+ }
+
 export const users = [
     {
-        traineeEmail : 'rishabh452@gmail.com',
-        reviewerEmail : 'chirag.arora@successive.tech'
+    traineeEmail: 'ravi.singh@successive.tech',
+    reviewerEmail: 'yogesh.singh@successive.tech',
     },
     {
-        traineeEmail : 'rishabh452@gmail.com',
-        reviewerEmail : 'chirag.arora@successive.tech'
-    }
-]
-
-export const permissions =
-{
-    'getUsers': {
-        all: ['head-trainer'],
-        read: ['trainee', 'trainer'],
-        write: ['trainer'],
-        Delete: [],
-    }
- }
+    traineeEmail: '@ravisuccessive.tech',
+    reviewerEmail: '@yogeshsuccesive.tech',
+    },
+    ];

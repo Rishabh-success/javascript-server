@@ -1,17 +1,23 @@
-import { permissions } from '../constants';
+import {permissions} from "../constants.js"
+
 export default function hasPermission(moduleName,role,permissionType)
 {
-    console.log(permissions);
-    console.log(moduleName);
-    const temp = permissions[moduleName];
-    if(!temp || !temp[permissionType]){
-        return false
-    }
-    if(temp['all'].includes(role)){
+    if((Object.keys(permissions)).includes(moduleName)){
+    if (permissions[moduleName].all.includes(role)){
+        console.log(`${role} has ${permissionType} permissions`);
         return true;
     }
-    if(!temp[permissionType].includes(role)){
+    else 
+    if (permissions[moduleName][permissionType].includes(role)){
+        console.log(`${role} has ${permissionType} permissions`);
+        return true;
+    }
+    else{
+        console.log(`${role} does not have ${permissionType} permissions`);
         return false;
     }
-    return true;
+}
+else{
+    console.log(`${moduleName} is not a valid module`)
+}
 }
