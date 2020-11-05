@@ -10,11 +10,12 @@ export const permissions =
 
 export const users = [
     {
-    traineeEmail: 'ravi.singh@successive.tech',
-    reviewerEmail: 'yogesh.singh@successive.tech',
+        traineeEmail: 'trainee1successive.tech',
+        reviewerEmail: 'reviewer1@successive.tech',
     },
     {
-    traineeEmail: '@ravisuccessive.tech',
-    reviewerEmail: '@yogeshsuccesive.tech',
+        traineeEmail: 'rishabh1.singh@successive.tech',
+        reviewerEmail: 'chirag.arora@successive.tech',
     },
+  
     ];
