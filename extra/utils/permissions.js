@@ -2,8 +2,8 @@ import {permissions} from "../constants.js"
 
 export default function hasPermission(moduleName,role,permissionType)
 {
-    if((Object.keys(permissions)).includes(moduleName)){
-    if (permissions[moduleName].all.includes(role)){
+if((Object.keys(permissions)).includes(moduleName)){
+    if(permissions[moduleName].all.includes(role)){
         console.log(`${role} has ${permissionType} permissions`);
         return true;
     }
