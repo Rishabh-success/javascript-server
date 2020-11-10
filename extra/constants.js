@@ -1,3 +1,4 @@
+
 export const users = [
     {
         traineeEmail : 'shashank.baranwal@gmail.com',
@@ -24,3 +25,4 @@ export const permissions =
         Delete: [],
     }
 }
+
