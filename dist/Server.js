@@ -1,44 +1,30 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
-const bodyParser = require("body-parser");
+const bodyparser = require("body-parser");
 const routes_1 = require("./libs/routes");
+const router_1 = require("./router");
 class Server {
     constructor(config) {
         this.config = config;
         this.app = express();
     }
+    initBodyParser() {
+        this.app.use(bodyparser.json());
+    }
     bootstrap() {
-        this.setupRouts();
+        this.initBodyParser();
+        this.SetupRoutes();
         return this;
     }
-    setupRouts() {
-        const { app } = this;
-        app.use('/health-check', (req, res) => {
-            console.log("inside Second middleware");
-            res.send("I am OK");
+    SetupRoutes() {
+        this.app.use('/api', router_1.default);
+        this.app.get('/health-check', (req, res, next) => {
+            res.send('i am ok');
         });
         this.app.use(routes_1.notFoundHandler);
         this.app.use(routes_1.errorHandler);
-        this.app.use((req, res, next) => {
-            next({
-                error: "Not Found",
-                code: 404
-            });
-        });
-        this.app.use((err, req, res, next) => {
-            console.log(err);
-            res.json({
-                "error ": err.error,
-                status: err.code,
-                message: err.message || "Error",
-                timeStamp: new Date()
-            });
-        });
         return this;
-    }
-    initBodyParser() {
-        this.app.use(bodyParser.json({ type: 'application/**json' }));
     }
     run() {
         const { app, config: { PORT } } = this;
