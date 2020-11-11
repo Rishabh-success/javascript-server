@@ -4,6 +4,7 @@ const express = require("express");
 const bodyparser = require("body-parser");
 const routes_1 = require("./libs/routes");
 const router_1 = require("./router");
+const Database_1 = require("./libs/Database");
 class Server {
     constructor(config) {
         this.config = config;
@@ -28,11 +29,16 @@ class Server {
     }
     run() {
         const { app, config: { PORT } } = this;
-        app.listen(PORT, (err) => {
-            if (err) {
-                console.log(err);
-            }
-            console.log(`App is running on port ${PORT}`);
+        Database_1.default.open('mongodb://localhost:27017/express-training')
+            .then((res) => {
+            console.log('Succesfully connected to Mongo');
+            app.listen(PORT, (err) => {
+                if (err) {
+                    console.log(err);
+                }
+                console.log(`App is running on port ${PORT}`);
+                Database_1.default.disconnect();
+            });
         });
     }
 }
