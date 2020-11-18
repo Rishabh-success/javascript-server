@@ -1,4 +1,3 @@
- 
 export default function hasPermission( moduleName , role , permissionType ) {
     let type ;
     const { all , read , write , Delete } = moduleName ;
@@ -21,6 +20,3 @@ export default function hasPermission( moduleName , role , permissionType ) {
             return false;
     }
 }
-// const { getUsers, getUser } = permissions;
-// let result = hasPermission(getUsers, 'head-trainer', 'Delete');
-// console.log(result);
