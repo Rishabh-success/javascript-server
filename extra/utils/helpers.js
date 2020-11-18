@@ -1,5 +1,5 @@
-export default function validateEmail(email) {
-    const regex =/\w+.\w+@successive.tech$/i;
-    
-    return (regex.test(email))
+export default function validateEmail(Email){
+    RegExp="^[a-zA-Z0-9+_.-]+@successive.tech+$";
+    let str=Boolean( Email.match(RegExp));
+    return str;
     }

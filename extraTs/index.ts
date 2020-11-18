@@ -1,14 +1,12 @@
-import { creatediamond , createequilatral } from './pattern'
-import {hasPermission,validateUsers} from './utils'
-import { users }  from './constants';
+import { createDimondShape , triangle } from './pattern';
+import { hasPermission , validateUsers } from './utils';
 
-creatediamond(5)
-createequilatral(6)
+createDimondShape(2);
+triangle(5);
 
-console.log(hasPermission('getUsers','head-trainer','all'));
-console.log(hasPermission('getUser','head-trainer','Delete'));
-console.log(hasPermission('getUser','trainer','all'));
-console.log(hasPermission('getUsers','trainee','write'));
-console.log(hasPermission('getUser','trainee','read'));
 
-validateUsers(users);
+import { permissions , user } from './constants';
+const result = hasPermission(permissions.getUsers, 'head-trainer', 'Delete');
+console.log(result);
+
+validateUsers(user);

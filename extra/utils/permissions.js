@@ -1,9 +1,22 @@
-import {permissions} from "../constants.js"
-export default function hasPermission(moduleName,role,permissionType)
-{
-return all.includes(role) || moduleName[permissionType].includes(role);
-}
-console.log(permissions.getUsers)
-let output = hasPermission('getUsers','head-trainer','Delete');
-console.log(output);
+export default function hasPermission(moduleName, role, permissionType) {
+    let type;
+    const { all, read, write, Delete } = moduleName;
+    if (permissionType == 'all')
+        type = all;
+    if (permissionType == 'read')
+        type = read;
+    if (permissionType == 'write')
+        type = write;
+    if (permissionType == 'Delete')
+        type = Delete;
 
+    if (role == 'head-trainer') {
+        return true;
+    }
+    else {
+        if (type.includes(role))
+            return true
+        else
+            return false;
+    }
+}

@@ -1,4 +1,4 @@
-import creatediamond from './diamond';
-import createequilatral from './equilateral';
+import createDimondShape from './diamond.js';
+import  triangle from './equilateral.js';
 
-export {creatediamond,createequilatral};
+export { createDimondShape , triangle };
