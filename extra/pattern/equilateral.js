@@ -1,10 +1,12 @@
-export default function equilateral(n) {
-    let whilte_space = "";
-    let j = n;
-    for (let i = 1; i <= n; i++) {
-          whilte_space  = " ".repeat(j);
-          console.log(whilte_space, '* '.repeat(i));
-          whilte_space = "";
-          j--;
-    }
-}
+export default function triangle(n) { 
+    for (var i = 0; i < n; i++) { 
+      var str = ''; 
+      for (var j = 1; j < n-i; j++) { 
+        str = str + ' '; 
+      } 
+      for (var k = 1; k <= (2*i+1); k++) { 
+        str = str + '*'; 
+      } 
+      console.log(str); 
+    } 
+  }
