@@ -7,12 +7,11 @@
     "@babel/core": "^7.12.3",
     "@babel/node": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
+    "@types/node": "^14.14.9",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "init": "^0.1.2",
-    "test": "^0.6.0",
-    "tsc": "^1.20150623.0",
-    "tst": "^6.1.1"
+    "test": "^0.6.0"
   },
   "devDependencies": {
     "commitizen": "^4.2.2",
@@ -42,7 +41,7 @@
     "url": "git+https://github.com/Rishabh-success/javascript-server.git"
   },
   "author": "",
- "license": "ISC",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Rishabh-success/javascript-server/issues"
   },
