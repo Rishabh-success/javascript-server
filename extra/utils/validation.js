@@ -1,20 +1,16 @@
-import validateEmail from './helper';
-export default function validateUsers(user){
-let valid = 0;
-let invalid = 0;
+import validateEmail from '../utils/helpers'
 
-user.forEach(({traineeEmail,reviewerEmail} )=> {
-
-if(validateEmail(reviewerEmail) && validateEmail(traineeEmail)){
-valid++;
-console.log("Valid User : ",traineeEmail,reviewerEmail);
-}
-else{
-invalid++;
-console.log("Invalid User : ",traineeEmail,reviewerEmail);
-}
-});
-console.log("Valid Users Count : " , valid);
-console.log("Invalid Users Count : ",invalid);
-
+export default function validateUsers(userData) {
+    let validUser = [];
+    let invalidUser = [];
+    userData.forEach(userData => {
+        const { traineeEmail, reviewerEmail } = userData;
+        if (validateEmail(traineeEmail) && validateEmail(reviewerEmail)) {
+            validUser.push(userData);
+        } else {
+            invalidUser.push(userData);
+        }
+    });
+    console.log([validUser.length] + " are valid users:", validUser);
+    console.log([invalidUser.length] + " are invalid users:", invalidUser);
 }
