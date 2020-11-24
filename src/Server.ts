@@ -1,40 +1,32 @@
 import * as express from 'express';
-import * as bodyparser from 'body-parser';
-import { notFoundHandler, errorHandler } from './libs/routes';
-import mainRouter from './router';
+    import {IConfig}  from './config/IConfig';
+    import { config } from './config';
 class Server {
-    app
-    constructor(private config) {
+    private app: express.Express;
+    constructor(private config:IConfig) {
         this.app = express();
     }
-    public initBodyParser() {
-        this.app.use(bodyparser.json());
-    }
     bootstrap() {
-        this.initBodyParser();
         this.SetupRoutes();
         return this;
     }
     SetupRoutes() {
-        this.app.use('/api', mainRouter);
-        this.app.get('/health-check', (req, res, next) => {
+        const { app } = this;
+        app.get('/health-check', (req, res, next) => {
             res.send('i am ok');
         });
-
-        this.app.use(notFoundHandler);
-
-        this.app.use(errorHandler);
         return this;
 
     }
     run() {
-        const { app, config: { PORT } } = this;
-        app.listen(PORT, (err) => {
+        console.log(config);
+        const { app, config: { port } } = this;
+        app.listen(port, (err) => {
             if (err) {
                 console.log(err);
             }
-            console.log(`App is running on port ${PORT}`);
-        });
+            console.log(`App is running on port ${port}`);
+        })
     }
 }
 export default Server;
