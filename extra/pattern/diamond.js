@@ -1,16 +1,23 @@
-export default function diamon(n) {
-    let whilte_space = "";
-    let j = n;
-    for (let i = 1; i <= n; i++) {
-      whilte_space =" ".repeat(j);
-      console.log(whilte_space,'* '.repeat(i));
-      whilte_space="";
-      j--;
-    }
-    for (let i = n; i >= 1; i--) {
-      whilte_space =" ".repeat(j);
-      console.log(whilte_space,' *'.repeat(i));
-      whilte_space="";
-      j++;
-    }
+export default function createDimondShape(size){
+  for(var i=1;i<=size;i++){
+      for(var s=size-1;s>=i;s--){
+      process.stdout.write(" ");
+      }
+      for(var j=1;j<=i;j++){
+      process.stdout.write("* ")
+      }
+      console.log();
+      }
+      
+      if(i==size+1){
+      for(var i=0;i<=size-1;i++){
+      for(var s=1;s<=i;s++){
+      process.stdout.write(" ");
+      }
+      for(j=i;j<=size-1;j++){
+      process.stdout.write("* ");
+      }
+      console.log();
+      }
+      }
   }
