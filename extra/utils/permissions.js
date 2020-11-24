@@ -1,9 +1,10 @@
-import {permissions} from "../constants.js"
-export default function hasPermission(moduleName,role,permissionType)
-{
-return all.includes(role) || moduleName[permissionType].includes(role);
+import {permissions} from '../constants';
+export default function hasPermission(moduleName, role, permissionType) {
+    
+    return (permissions[moduleName][permissionType].includes(role))
 }
-console.log(permissions.getUsers)
-let output = hasPermission('getUsers','head-trainer','Delete');
-console.log(output);
 
+const result1=hasPermission('getUsers', "trainer", "read");
+console.log(result1);
+const result2 =hasPermission('getUsers', "trainee", "write");
+console.log(result2);

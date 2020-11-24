@@ -1,8 +1,12 @@
-import {diamond,equilateral} from './pattern'
-import {hasPermissions,validateUsers} from './utils'
-import {users} from './constants'
+import {createDimondShape,triangle} from './patterns';
+import {hasPermission,validateUsers} from './utils';
 
-diamond(5)
-equilateral(5)
-hasPermissions('getUsers',"trainer","read"); 
-validateUsers(users)
+
+createDimondShape(2);
+triangle(5);
+
+import {permissions , user} from './constants';
+let result = hasPermission(permissions.getUsers, 'head-trainer', 'Delete');
+console.log(result);
+
+validateUsers(user);
