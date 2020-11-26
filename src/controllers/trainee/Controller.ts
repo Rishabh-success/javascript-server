@@ -57,7 +57,7 @@ class traineeController {
                 message: "Trainee updated successfully",
                 data: [
                     {
-                        name: "Suresh",
+                        name: "Rishabh",
                         address: "Noida"
                     }
                 ]
@@ -76,7 +76,7 @@ class traineeController {
                 message: "Trainee deleted successfully",
                 data: [
                     {
-                        name: "Suresh",
+                        name: "Rishabh",
                         address: "Noida"
                     }
                 ]
