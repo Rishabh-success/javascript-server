@@ -20,13 +20,7 @@ class Server {
     run() {
         console.log(config);
         const { app, config: { port } } = this;
-        app.listen(port, (err) => { 
-            if (err) {
-                console.log(err);
-                throw err
-            }                                                   
-            console.log(`App is running on port ${port}`);
-        })
+        app.listen(port)
     }
 }
 export default Server;
