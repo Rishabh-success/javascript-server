@@ -1,4 +1,4 @@
-import * as jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken'
 import hasPermission from './permissions';
 export default (module: any , permissionType:string ) =>(req,res,next)=>{
 
