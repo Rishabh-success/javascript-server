@@ -1,4 +1,3 @@
-
 import {Request, Response, NextFunction} from 'express'
 
 export default ((err, req : Request, res: Response, next:NextFunction) => {
@@ -9,7 +8,7 @@ export default ((err, req : Request, res: Response, next:NextFunction) => {
             status : err.code,
             message : err. message || "Error",
             timeStamp: new Date()
-         
+            
         }
     )
 });

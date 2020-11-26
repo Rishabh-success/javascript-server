@@ -20,6 +20,8 @@
     },
     },
     "exclude": ["dist"],
-    "include": ["src"],
+    "include": [
+    "src"
+    ],
     "types": ["src/types"]
 }
