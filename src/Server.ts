@@ -1,26 +1,48 @@
 import * as express from 'express';
-    import {IConfig}  from './config/IConfig';
-    import { config } from './config';
+import { IConfig } from './config/IConfig';
+import { config } from './config';
+import notFoundRoute from './libs/routes/notFoundRoute'
+import {errorHandler} from './libs/routes'
+import mainRouter from './router';
+import * as bodyparser from 'body-parser';
+
 class Server {
-    private app: express.Express;
-    constructor(private config:IConfig) {
+    app;
+    constructor(private config) {
         this.app = express();
+
     }
+   public initBodyParser() {
+        this.app.use(bodyparser.json());
+    }
+
     bootstrap() {
-        this.SetupRoutes();
+        this.initBodyParser();
+        this.setupRoutes();
         return this;
     }
-    SetupRoutes() {
-        const { app } = this;
-        app.get('/health-check', (req, res, next) => {
-            res.send('i am ok');
+
+   public setupRoutes() {
+        this.app.use( '/health-check', ( req, res, next ) => {
+            res.send( 'I am Ok' );
+            next();
         });
+        this.app.use( '/api' , mainRouter );
+        this.app.use( notFoundRoute );
+        this.app.use( errorHandler );
         return this;
     }
-    run() {
-        console.log(config);
-        const { app, config: { port } } = this;
-        app.listen(port)
+    run () {
+        const { app , config : {port }} = this;
+        app.listen( port , ( err ) => {
+            if ( err ) {
+            console.log( err );
+            }
+            console.log( `App is running on port ${ port }` );
+        });
+
     }
+
+
 }
 export default Server;
