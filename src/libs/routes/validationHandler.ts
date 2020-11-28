@@ -15,7 +15,7 @@ export default (config) => (req: Request, res: Response, next: NextFunction) => 
             throw ({ status: 400, msg: `${key} is required field`, error: "Bad Request" })
         }
         filterValues.forEach(element => {
-            obj.custom(element);
+            //obj.custom(element);
             if (obj.string) {
                 if (!(typeof (element) === 'string')) {
                     throw ({ status: 400, msg: `${key}  should be a string`, error: "Bad Request" })
