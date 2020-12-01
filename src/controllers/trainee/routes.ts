@@ -1,5 +1,4 @@
 import { Router } from 'express';
-
 import traineeController from './Controller';
 import validationHandler from '../../libs/routes/validationHandler';
 import validation from './validation';
