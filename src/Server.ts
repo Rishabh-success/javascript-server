@@ -1,13 +1,14 @@
 import * as express from 'express';
 import { IConfig } from './config/IConfig';
 import { config } from './config';
-import notFoundRoute from './libs/routes/notFoundRoute'
-import {errorHandler} from './libs/routes'
+import notFoundRoute from './libs/routes/notFoundRoute';
+import { errorHandler } from './libs/routes';
 import mainRouter from './router';
 import * as bodyparser from 'body-parser';
 
 class Server {
     app;
+    // tslint:disable-next-line
     constructor(private config) {
         this.app = express();
 
