@@ -4,9 +4,9 @@ export const key = 'qwertyuiopasdfghjklzxcvbnm123456';
 export const Permission: IPermissions = {
     'getUsers': {
         all: ['head-trainer'],
-        read: ['trainee', 'trainer'],
-        write: ['trainer'],
-        Delete: [],
+        read: ['trainee', 'trainer', 'head-trainer'],
+        write: ['trainer', 'head-trainer'],
+        Delete: ['head-trainer'],
     },
 };
 
