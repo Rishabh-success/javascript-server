@@ -1,4 +1,4 @@
-import validateEmail from '../utils/helpers'
+import validateEmail from './helpers'
 
 export default function validateUsers(userData) {
     let validUser = [];
