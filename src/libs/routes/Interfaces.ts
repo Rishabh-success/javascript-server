@@ -1,11 +1,18 @@
-type access={
-    all:String[];
-    write:String[];
-    read:String[];
-    Delete:String[];
-    
+interface IUsers {
+    traineeEmail: string;
+    reviewerEmail: string;
 
-};
-export interface IPermissions{
-    getUsers:access;
 }
+
+type access = {
+    all: string[];
+    read: string[];
+    write: string[];
+    Delete: string[];
+};
+
+interface IPermissions {
+    getUsers: access;
+}
+
+export { IUsers, IPermissions };

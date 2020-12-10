@@ -1,27 +1,54 @@
 import * as express from 'express';
-    import {IConfig}  from './config/IConfig';
-    import { config } from './config';
+import { IConfig } from './config/IConfig';
+import notFoundRoute from './libs/routes/notFoundRoute';
+import Database from './libs/Database';
+import { errorHandler } from './libs/routes';
+import mainRouter from './router';
+import * as bodyparser from 'body-parser';
+
 class Server {
-    private app: express.Express;
-    constructor(private config:IConfig) {
+    private app: any;
+    constructor(private config) {
         this.app = express();
+
     }
+    public initBodyParser() {
+        this.app.use(bodyparser.json());
+    }
+
     bootstrap() {
-        this.SetupRoutes();
+        this.initBodyParser();
+        this.setupRoutes();
         return this;
     }
-    SetupRoutes() {
-        const { app } = this;
-        app.get('/health-check', (req, res, next) => {
-            res.send('i am ok');
+
+    public setupRoutes() {
+        this.app.use('/api', mainRouter);
+        this.app.use('/health-check', (req, res, next) => {
+            res.send('I am Ok');
+            next();
         });
+        this.app.use(notFoundRoute);
+        this.app.use(errorHandler);
         return this;
     }
     run() {
-        console.log(config);
-        const { app, config: { port } } = this;
-        app.listen(port)
+        const { app, config: { port, MONGO_URL } } = this;
+        Database.open('MONGO_URL')
+            .then((res) => {
+                console.log('Succesfully connected to Mongo');
+                app.listen(port, (err) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        console.log(`App is running on port ${port}`);
+                        Database.disconnect();
+                    }
+                });
+            })
+            .catch(err => console.log(err));
+        return this;
     }
-
 }
 export default Server;
