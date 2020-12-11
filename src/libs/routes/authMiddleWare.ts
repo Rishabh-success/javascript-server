@@ -21,7 +21,7 @@ export default (module: any, permissionType: string) => (req, _res, next) => {
     }
     catch ( err ) {
         next ( {
-            message: err
+            message: err.message
         } );
     }
 };
