@@ -5,7 +5,7 @@ const envVars = dotenv.config();
 console.log('inside config', envVars);
 
 const { PORT, NODE_ENV, MONGO_URL } = envVars.parsed;
-const config = { port: PORT || 9000, env: NODE_ENV , MONGO_URL: MONGO_URL || 'local' };
+const config = { port: PORT || 9000, env: NODE_ENV , MONGO_URL: MONGO_URL || 'mongodb://localhost:27017/express-training' };
 
 Object.freeze(config);
 export default config;
