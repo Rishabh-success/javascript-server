@@ -4,7 +4,6 @@ import UserController from './Controller';
 import config from './validation';
 
 const UserRouter = Router();
-
 UserRouter.route('/')
 .get(validationHandler(config.get), UserController.get)
 .post(validationHandler(config.create), UserController.create)
