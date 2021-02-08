@@ -1,9 +1,9 @@
-import { Request, Response, NextFunction } from 'express';
+import {Request, Response, NextFunction} from 'express'
 
-export default ( req: Request , res: Response , next: NextFunction ) => {
-    console.log( `first middleWare Working` ) ;
+export default (req:Request , res:Response, next: NextFunction) => {
+
     next({
-        err : 'Not Found',
-        code : 404
-    });
-};
+        error: "Not Found",
+        code: 404
+    })
+}

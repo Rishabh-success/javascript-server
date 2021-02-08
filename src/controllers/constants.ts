@@ -27,4 +27,4 @@ const users: IUsers[] =
     }
   ]
 let { getUsers, getDetails } = permissions;
-export { getUsers, getDetails, users } 
+export { getUsers, getDetails, users }

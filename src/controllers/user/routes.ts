@@ -1,22 +1,17 @@
-import { Router } from 'express';
-import UserController from './Controller';
+import * as express from 'express';
 import authMoiddleWare from '../../libs/routes/authMiddleWare';
-import validation from './validation'
+import validation  from './validation'
 import validationHandler from '../../libs/routes/validationHandler';
+import UserController from './Controller';
 import { getUsers, getDetails } from '../constants';
-import config from './validation';
+import { config } from 'dotenv/types';
 
-const UserRouter = Router();
-UserRouter.route('/')
-.get(validationHandler(config.get), UserController.get)
-.post(validationHandler(config.create), UserController.create)
-.put(validationHandler(config.update), UserController.update)
-.delete(validationHandler(config.Delete), UserController.delete);
+const UserRouter = express.Router();
 
 UserRouter.route('/me')
-   .get(authMoiddleWare('getUsers', 'all'), UserController.me)
+.get(authMoiddleWare(getUsers, 'all'), UserController.me)
 
 UserRouter.route('/login')
-   .post(validationHandler(validation.login), UserController.login);
+.post( validationHandler(validation.login),UserController.login);
 
 export default UserRouter;

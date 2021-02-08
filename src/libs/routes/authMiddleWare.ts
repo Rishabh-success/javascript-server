@@ -1,16 +1,17 @@
+import { config } from 'dotenv/types';
 import * as jwt from 'jsonwebtoken';
 import { key } from './constants';
 import hasPermission from './permissions';
-export default (module: any, permissionType: string) => (req, _res, next) => {
+export default (module, permissionType) => (req, res, next) => {
     try {
         console.log('config is', module, permissionType);
         const token = req.headers.authorization;
-        if (token ) {
+        if (token !== undefined) {
             const user = jwt.verify(token, key);
             const result = hasPermission(module, user.role, permissionType);
-            _res.locals.users = user;
+            res.locals.users = user;
             if (!result)
-            
+
                 next();
             else {
                 next({

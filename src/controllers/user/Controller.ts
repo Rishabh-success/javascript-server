@@ -19,10 +19,10 @@ class UserController {
         const { email , password } = req.body;
         userModel.findOne({ email: email }, (err, docs) => {
             if (docs) {
-                if ( password === docs.password) { 
+                if ( password === docs.password) {
                    const token = jwt.sign({docs},'qwertyuiopasdfghjklzxcvbnm123456');
                     res.send({
-                        data: token,
+                        token: token,
                         message: 'LoggedIN',
                         status: 200
                     })
@@ -33,7 +33,7 @@ class UserController {
                         message: 'Password not exists in DB'
 
                    });
-                } 
+                }
             }
             else {
                 res.send({
@@ -55,71 +55,74 @@ class UserController {
         res.send(data);
     }
 
-    get(req, res, next) {
+    get(req: Request, res: Response, next: NextFunction) {
         try {
-            console.log('Inside get method of Trainee Controller');
-            res.status(200).json({
-                message: 'User Fetched Succesfully',
-                data: [
-                    {
-                        name: 'Rishabh',
-                        address: 'Noida'
-                    }
-                ]
-            });
-        } catch (err) {
-            console.log(`Error Occured ${err}`);
-        }
-    }
-    create(req, res, next) {
-        try {
-            console.log('Inside post method of Trainee Controller');
-            res.status(200).json({
-                message: 'User Created Succesfully',
-                data: [
-                    {
-                        name: req.body.name,
-                        address: 'Noida'
-                    }
-                ]
-            });
-        } catch (err) {
-            console.log(`Error Occured ${err}`);
-        }
-    }
-    update(req, res, next) {
-        try {
-            console.log('Inside update method of Trainee Controller');
-            res.status(200).json({
-                message: 'User Updated Succesfully',
-                data: [
-                    {
-                        name: 'Rishabh',
-                        address: 'Noida'
-                    }
-                ]
-            });
-        } catch (err) {
-            console.log(`Error Occured ${err}`);
-        }
-    }
+            console.log('Inside get method of User');
+            res.send({
+                message: 'User fetched succefully',
+                data: [{
+                    name: 'user1',
 
-    delete(req, res, next) {
-        try {
-            console.log('Inside post method of Trainee Controller');
-            res.status(200).json({
-                message: 'User Deleted Succesfully',
-                data: [
-                    {
-                        name: 'Rishabh',
-                        address: 'Noida'
-                    }
-                ]
+                },
+                {
+                    name: 'user2',
+                }]
             });
         } catch (err) {
-            console.log(`Error Occured ${err}`);
+            console.log('Inside err', err);
         }
     }
+    create(req: Request, res: Response, next: NextFunction) {
+        try {
+            console.log('Inside post method of Trainee');
+            res.send({
+                message: 'User created succefully',
+                data: [{
+                    name: 'user1',
 
+                },
+                {
+                    name: 'user2',
+                }]
+            });
+        } catch (err) {
+            console.log('Inside err', err);
+        }
+    }
+    update(req: Request, res: Response, next: NextFunction) {
+        try {
+            console.log('Inside put method of Trainee');
+            res.send({
+                message: 'Trainee updated succefully',
+                data: [{
+                    name: 'user1',
+
+                },
+                {
+                    name: 'user2',
+                }]
+            });
+        } catch (err) {
+            console.log('Inside err', err);
+        }
+    }
+    delete(req: Request, res: Response, next: NextFunction) {
+        try {
+            console.log('Inside delete method of Trainee');
+            res.send({
+                message: 'Trainee deleted succefully',
+                data: [{
+                    name: 'user1',
+
+                },
+                {
+                    name: 'user2',
+                }]
+            });
+        } catch (err) {
+            console.log('Inside err', err);
+        }
+    }
 }
+
 export default UserController.getInstance();
