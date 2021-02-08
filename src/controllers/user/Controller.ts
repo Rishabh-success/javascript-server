@@ -1,8 +1,7 @@
-import * as jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
-import { userModel } from '../../repositories/user/UserModel'
+import { userModel } from '../../repositories/user/UserModel';
+import * as jwt from 'jsonwebtoken';
 import IRequest from '../../IRequest';
-
 class UserController {
     static instance: UserController;
 
