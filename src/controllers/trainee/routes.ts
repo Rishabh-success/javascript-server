@@ -1,14 +1,14 @@
 import { Router } from 'express';
 import validationHandler from '../../libs/routes/validationHandler';
-import config from './validation';
-import TraineeController from './Controller';
+import config from './validation'
+import traineeController from './Controller';
 import authMiddleWare from '../../libs/routes/authMiddleWare';
 
-const TraineeRouter = Router();
-TraineeRouter.route('/')
-   .get(authMiddleWare('getUsers', 'read'), validationHandler(config.get), TraineeController.get)
-   .post(authMiddleWare('getUsers', 'write'), validationHandler(config.create), TraineeController.create)
-   .put(authMiddleWare('getUsers', 'all'), validationHandler(config.update), TraineeController.update)
-   .delete(authMiddleWare('getUsers', 'delete'), validationHandler(config.Delete), TraineeController.delete);
+const traineeRouter = Router();
+traineeRouter.route('/')
+   .get(authMiddleWare('getUsers', 'read'), validationHandler(config.get), traineeController.get)
+   .post(authMiddleWare('getUsers', 'write'), validationHandler(config.create), traineeController.create)
+   .put(authMiddleWare('getUsers', 'all'), validationHandler(config.update), traineeController.update)
+   .delete(authMiddleWare('getUsers', 'delete'), validationHandler(config.Delete), traineeController.delete);
 
-export default TraineeRouter;
+export default traineeRouter;

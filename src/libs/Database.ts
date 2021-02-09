@@ -4,20 +4,25 @@ import seedData from './seedData';
 class Database {
     static open(MONGO_URL) {
         return new Promise((resolve, reject) => {
-            console.log('Inside open Method');
-            mongoose.connect('mongodb://localhost:27017/express-training', { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
+            mongoose.connect(MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
                 if (err) {
                     console.log(err);
                     reject(err);
                     return;
                 }
+                console.log("database Connected");
                 seedData();
-                resolve(null);
+                resolve(undefined);
             });
         });
     }
     static disconnect() {
-        mongoose.disconnect();
+        mongoose.disconnect(err => {
+            if (err) {
+                console.log(err);
+            }
+        console.log('Database Disconnected!');
+    });
     }
 }
 export default Database;

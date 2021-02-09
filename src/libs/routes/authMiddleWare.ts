@@ -1,27 +1,35 @@
+import { config } from 'dotenv/types';
 import * as jwt from 'jsonwebtoken';
 import { key } from './constants';
 import hasPermission from './permissions';
-export default (module: any, permissionType: string) => (req, _res, next) => {
+export default (module, permissionType) => (req, res, next) => {
     try {
         console.log('config is', module, permissionType);
         const token = req.headers.authorization;
-        console.log( token );
+        if (token !== undefined) {
             const user = jwt.verify(token, key);
-            console.log( user.Role );
             const result = hasPermission(module, user.role, permissionType);
-            console.log( 'result is', result );
-            if ( result === true )
-        next();
-    else {
-        next ( {
-            message: 'Unauthorised',
-            status: 403
-        } );
+            res.locals.users = user;
+            if (!result)
+
+                next();
+            else {
+                next({
+                    error: 'Unauthorised access',
+                    status: 403,
+                    message: 'User is Not authorized'
+                });
+            }
+        } else {
+            next({
+                error: 'Unauthorised Access',
+                message: "Please Provide Token"
+            });
+        }
     }
-    }
-    catch ( err ) {
-        next ( {
+    catch (err) {
+        next({
             message: err.message
-        } );
+        });
     }
 };
