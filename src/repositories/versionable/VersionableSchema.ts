@@ -35,4 +35,4 @@ export class VersionableSchema extends mongoose.Schema {
         }, options);
         super(versionable, collection);
       }
-    }
+    } 
