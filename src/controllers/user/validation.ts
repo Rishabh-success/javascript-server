@@ -30,6 +30,7 @@ const config = {
           regex: '',
           in: ['body'],
           errorMessage: 'Name is required'
+<<<<<<< HEAD
       },
       email: {
           required: true,
@@ -48,12 +49,17 @@ const config = {
           string: true,
           in: ['body'],
           errorMessage: 'Password is required'
+=======
+>>>>>>> 1b9c0b5d9f11a09e0866dd6eaede51de7efbe72b
       }
   },
   Delete: {
       id: {
           required: true,
+<<<<<<< HEAD
           string: true,
+=======
+>>>>>>> 1b9c0b5d9f11a09e0866dd6eaede51de7efbe72b
           errorMessage: 'Id is required',
           in: ['params']
       }

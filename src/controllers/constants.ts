@@ -27,6 +27,11 @@ const users: IUsers[] =
       reviewerEmail: 'reviewer.der@successive.tech',
     }
   ]
+<<<<<<< HEAD
 
 
 export { permissions, users}
+=======
+let { getUsers, getDetails } = permissions;
+export { getUsers, getDetails, users }
+>>>>>>> 1b9c0b5d9f11a09e0866dd6eaede51de7efbe72b
