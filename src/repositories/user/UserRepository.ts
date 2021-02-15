@@ -19,11 +19,12 @@ export default class UserRepository extends
     }
 
     public update(id, updator) {
-        return super.update(id, updator);
+      let datatoupdate;
+        return super.update(id, datatoupdate ,updator);
     }
 
     public get(data) {
-        return super.get(data);
+        return super.getUser(data);
     }
 
     public delete(id, remover) {
@@ -35,6 +36,6 @@ export default class UserRepository extends
     }
 
     public count() {
-        return super.count(query);
+        return super.count();
     }
 }

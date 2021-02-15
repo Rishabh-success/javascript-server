@@ -4,6 +4,7 @@ import { errorHandler } from './libs/routes';
 import notFoundRoutes from './libs/routes/notFoundRoute';
 import mainRouter from './router';
 import Database from './libs/Database'
+import * as cors from 'cors';
 
 class Server {
     private app: any;
@@ -27,6 +28,7 @@ class Server {
             res.send('I am Ok');
             next();
         });
+        this.app.use(cors());
         this.app.use('/api', mainRouter);
         this.app.use(notFoundRoutes);
         this.app.use(errorHandler);

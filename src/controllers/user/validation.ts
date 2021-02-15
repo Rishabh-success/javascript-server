@@ -1,4 +1,4 @@
-const config = {
+const Validation = {
   get: {
       skip: {
           required: false,
@@ -27,39 +27,14 @@ const config = {
       },
       name: {
           required: true,
-          regex: '',
+          regex: '/[a-z, ]+/',
           in: ['body'],
           errorMessage: 'Name is required'
-<<<<<<< HEAD
-      },
-      email: {
-          required: true,
-          regex: /^[A-Za-z0-9._%+-]+@successive.tech$/,
-          in: ['body'],
-          errorMessage: 'Email is required'
-      },
-      role: {
-          required: true,
-          string: true,
-          in: ['body'],
-          errorMessage: 'Role is required'
-      },
-      password: {
-          required: true,
-          string: true,
-          in: ['body'],
-          errorMessage: 'Password is required'
-=======
->>>>>>> 1b9c0b5d9f11a09e0866dd6eaede51de7efbe72b
       }
   },
   Delete: {
       id: {
           required: true,
-<<<<<<< HEAD
-          string: true,
-=======
->>>>>>> 1b9c0b5d9f11a09e0866dd6eaede51de7efbe72b
           errorMessage: 'Id is required',
           in: ['params']
       }
@@ -90,4 +65,4 @@ const config = {
   }
 };
 
-export default config;
+export default Validation;

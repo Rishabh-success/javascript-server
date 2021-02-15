@@ -8,15 +8,15 @@ export default () => {
                 console.log('Data seeding in progress');
                 userRepository.create({
                     name: 'head-trainer',
-                    email: 'headtrainer@successivetech',
+                    email: 'headtrainer@successive.tech',
                     role: 'head-trainer',
-                    password: 'training@123'
+                    password: 'Training@123'
                 }, 'admin');
                 userRepository.create({
                     name: 'trainer',
-                    email: 'trainer@successivetech',
+                    email: 'trainer@successive.tech',
                     role: 'trainer',
-                    password: 'training@123'
+                    password: 'Training@123'
                 },'admin');
             }
         })

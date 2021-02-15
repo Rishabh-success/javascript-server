@@ -1,63 +1,58 @@
-import { config } from 'dotenv/types';
+import Validation from '../../controllers/user/validation'
+import hasPermission  from './permissions';
 import * as jwt from 'jsonwebtoken';
-import { key } from './constants';
-import hasPermission from './permissions';
-<<<<<<< HEAD
-import UserRepository from '../../repositories/user/UserRepository';
+import { Request, Response, NextFunction } from 'express';
+import UserRepositories from '../../repositories/user/UserRepository';
+import { Console } from 'console';
 
-=======
->>>>>>> 1b9c0b5d9f11a09e0866dd6eaede51de7efbe72b
-export default (module, permissionType) => (req, res, next) => {
+export default (module, permission) => async (req: Request, res: Response, next: NextFunction) => {
     try {
-        console.log('config is', module, permissionType);
+        let decodeUser: any;
+        const secretKey = "qwertyuiopasdfghjklzxcvbnm123456";
         const token = req.headers.authorization;
-        if (token !== undefined) {
-<<<<<<< HEAD
-            const decodeUser = jwt.verify(token, key);
-            console.log('user is ', decodeUser);
-            const userRepository = new UserRepository();
-            userRepository.findOne({ id: decodeUser.id })
-                .then((userData) => {
-                    if (!userData) {
-                        throw 'User Not Found';
-                    }
-                    else if (!hasPermission(module, decodeUser.role, permissionType)) {
-                        next({
-                            error: 'Unauthorised Access',
-                            message: "user are not authorized",
-                            status: 403
-                        });
-                    } else {
-                        //req.query = decodeUser.id;
-                        req.userDataToken = userData;
-                        next();
-                    }
-                })
-                .catch((err) => {
-                    next({
-                        error: 'user is not found',
-                        code: 400
-                    });
-=======
-            const user = jwt.verify(token, key);
-            const result = hasPermission(module, user.role, permissionType);
-            res.locals.users = user;
-            if (!result)
-
-                next();
-            else {
-                next({
-                    error: 'Unauthorised access',
-                    status: 403,
-                    message: 'User is Not authorized'
->>>>>>> 1b9c0b5d9f11a09e0866dd6eaede51de7efbe72b
-                });
-        } else {
+        if (!token) {
             next({
-                error: 'Unauthorised Access',
-                message: "Please Provide Token"
+                message: 'token not found',
+                error: 'Authentication Failed',
+                status: 403
+            });
+          }
+          decodeUser = jwt.verify(token, secretKey);
+          
+        const { email } = decodeUser;
+        if (!email) {
+            next({
+                message: 'Email not in token',
+                error: 'Authentication failed',
+                status: 403
             });
         }
+        const userRepository = new UserRepositories();
+        const data = await userRepository.findOne({ email });
+        if (!data) {
+            next({
+                message: 'User is empty',
+                error: 'Authetication failed',
+                status: 403
+            });
+        }
+        if (!data.role) {
+            next({
+                message: 'role not found',
+                error: 'Authentication Failed',
+                status: 403
+            });
+            return;
+        }
+        if (!hasPermission(module, data.role, permission)) {
+            return next({
+                message: `${data.role} does not have ${permission} permission in ${module}`,
+                error: 'unauthorized',
+                status: 403
+            });
+        }
+        res.locals.userData = data;
+        next();
     }
     catch (err) {
         next({
