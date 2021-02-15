@@ -1,6 +1,5 @@
 import * as jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
-import { userModel } from '../../repositories/user/UserModel'
 import IRequest from '../../IRequest';
 import UserRepository from '../../repositories/user/UserRepository';
 import { config } from '../../config';

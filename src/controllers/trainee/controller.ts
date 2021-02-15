@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import UserRepositories from '../../repositories/user/UserRepository';
+import * as bcrypt from 'bcrypt';
 
 class TraineeController {
     private userRepository;
@@ -16,8 +17,8 @@ class TraineeController {
     }
     public get = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const trainee = await this.userRepository.get(req.body);
-            if (!trainee) {
+            const user = await this.userRepository.findAll(req.body);
+            if (!user) {
                 next({
                     message: 'trainee Not Fetched',
                     error: 404,
@@ -25,7 +26,7 @@ class TraineeController {
             }
             res.send({
                 message: 'trainee fetched successfully',
-                data: trainee,
+                data: user,
                 status: 200,
             });
         } catch (err) {
@@ -36,17 +37,12 @@ class TraineeController {
     }
     public create = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const creator = req.headers.user;
-            const user = await this.userRepository.create(req.body, creator);
-            if (!user) {
-                next({
-                    message: 'trainee Not Created',
-                    error: 404,
-                })
-            }
+            const pass = await bcrypt.hash(req.body.password, 10);
+            req.body.password = pass;
+            this.userRepository.create(req.body, req.headers.user);
             res.send({
                 message: 'trainee created successfully',
-                data: user,
+                data: req.body,
                 status: 200,
             });
         } catch (err) {

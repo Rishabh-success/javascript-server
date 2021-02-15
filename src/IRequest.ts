@@ -4,4 +4,5 @@ body: any;
 query: any;
 params: any;
 userData: any;
+headers: any;
 }

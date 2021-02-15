@@ -3,14 +3,14 @@ import { IUsers, IPermissions } from './interface';
 const permissions: IPermissions = {
   'getUsers': {
     all: ['head-trainer'],
-    read: ['trainee', 'trainer'],
-    write: ['trainer'],
+    read: ['trainee', 'trainer', 'head-trainer'],
+    write: ['trainer', 'head-ttrainer'],
     Delete: []
   },
   'getDetails': {
     all: ['head-trainer'],
-    read: ['trainee', 'trainer'],
-    write: ['trainer'],
+    read: ['trainee', 'trainer', 'head-trainer'],
+    write: ['trainer', 'head-trainer'],
     Delete: []
   }
 }
