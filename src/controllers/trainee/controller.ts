@@ -54,7 +54,9 @@ class TraineeController {
     public update = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const data = req.body
+            console.log('data is', data)
             const user = await this.userRepository.update(data, req.headers.user);
+            console.log('user data is', user)
             res.send({
                 message: 'trainee updated successfully',
                 data: user,
@@ -66,13 +68,14 @@ class TraineeController {
             })
         }
     }
-    public delete = async (req: Request, res: Response, next: NextFunction) => {
+    public delete = async (req, res, next) => {
         try {
             const id = req.params.id;
-            await this.userRepository.delete(id, req.headers.user);
+            console.log('id is', id)
+            await this.userRepository.delete(id);
             res.send({
                 message: 'trainee deleted successfully',
-                data: req.params.id,
+                data: id,
                 status: 200,
             });
         } catch (err) {

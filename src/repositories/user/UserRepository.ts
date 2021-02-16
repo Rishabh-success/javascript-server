@@ -19,7 +19,7 @@ export default class UserRepository extends
     return super.create(data, creator);
   }
 
-  public update(id, data) {
+  public update(data, id) {
     if ('password' in data) {
       const rawPassword = data.password;
       const saltRounds = 10;
@@ -27,7 +27,7 @@ export default class UserRepository extends
       const hashedPassword = bcrypt.hashSync(rawPassword, salt);
       data.password = hashedPassword;
     }
-    return super.update(id, data);
+    return super.update(data, id);
   }
 
   public get(data) {

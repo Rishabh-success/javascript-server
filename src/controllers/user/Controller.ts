@@ -3,6 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 import IRequest from '../../IRequest';
 import UserRepository from '../../repositories/user/UserRepository';
 import { config } from '../../config';
+import * as bcrypt from 'bcrypt';
 
 
 class UserController {
@@ -90,10 +91,12 @@ class UserController {
     }
     public create = async (req: Request, res: Response, next: NextFunction) => {
         try {
+          const pass = await bcrypt.hash(req.body.password, 10);
+          req.body.password = pass;
             const user = await this.userRepository.create(req.body, req.headers.user);
             if (!user) {
                 next({
-                    message: 'User Not Created',
+                    message: 'user not created',
                     error: 404,
                 })
             }

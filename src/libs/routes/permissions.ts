@@ -5,7 +5,7 @@ export default function hasPermission(moduleName: string, role: string, permissi
     console.log(moduleName);
     const assent = Permission[moduleName];
     if (!assent || !assent[permissionType]) {
-        console.log(`User do not have access of  ${permissionType} type`);
+        console.log(`${role} do not have access of  ${permissionType} type`);
         return false;
     }
     if (!assent[permissionType].includes(role)) {

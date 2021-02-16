@@ -26,10 +26,10 @@ const Validation = {
           }
       },
       name: {
-          required: true,
-          regex: '/[a-z, ]+/',
-          in: ['body'],
-          errorMessage: 'Name is required'
+        required: true,
+        regex: '',
+        in: ['body'],
+        errorMessage: 'Name is required'
       }
   },
   Delete: {
