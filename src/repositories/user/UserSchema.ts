@@ -1,7 +1,7 @@
-import * as mongoose from 'mongoose';
+import { VersionableSchema } from '../versionable/VersionableSchema';
 
 
-class UserSchema extends mongoose.Schema {
+class UserSchema extends VersionableSchema {
 
 
     constructor(collections: any) {
@@ -11,6 +11,7 @@ class UserSchema extends mongoose.Schema {
             email: String,
             role: String,
             password: String,
+            createdby: String,
 
         });
         super(baseSchema, collections);

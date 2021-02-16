@@ -1,12 +1,8 @@
-import { IConfig } from './IConfig';
 import * as dotenv from 'dotenv';
 
 const envVars = dotenv.config();
-console.log('inside config', envVars);
+console.log("inside config", envVars);
 
-const { PORT, NODE_ENV, MONGO_URL } = envVars.parsed;
-const config = { port: PORT || 9000, env: NODE_ENV , MONGO_URL: MONGO_URL || 'local' };
+const { PORT, NODE_ENV, MONGO_URL, SECRETKEY, PASSWORD } = envVars.parsed;
 
-Object.freeze(config);
-export default config;
-
+export default Object.freeze({ port: PORT, env: NODE_ENV, secretkey: SECRETKEY, password: PASSWORD, mongo_url: MONGO_URL || 'mongodb://localhost:27017/express-training' });
