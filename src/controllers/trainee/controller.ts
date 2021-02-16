@@ -17,7 +17,11 @@ class TraineeController {
     }
     public get = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const user = await this.userRepository.findAll(req.body);
+            const sort = {}
+            sort[`${req.query.sortedBy}`] = req.query.sortedOrder;
+            console.log(sort);
+            const user = await this.userRepository.findAll(req.body).sort(sort)
+            .skip(Number(req.query.skip)).limit(Number(req.query.limit));;
             if (!user) {
                 next({
                     message: 'trainee Not Fetched',
@@ -25,6 +29,8 @@ class TraineeController {
                 })
             }
             res.send({
+                totalCount: await this.userRepository.count(req.body),
+                count: user.length,
                 message: 'trainee fetched successfully',
                 data: user,
                 status: 200,
@@ -54,9 +60,7 @@ class TraineeController {
     public update = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const data = req.body
-            console.log('data is', data)
             const user = await this.userRepository.update(data, req.headers.user);
-            console.log('user data is', user)
             res.send({
                 message: 'trainee updated successfully',
                 data: user,
@@ -68,14 +72,13 @@ class TraineeController {
             })
         }
     }
-    public delete = async (req, res, next) => {
+    public delete = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const id = req.params.id;
-            console.log('id is', id)
-            await this.userRepository.delete(id);
+            await this.userRepository.delete(id, req.headers.user);
             res.send({
                 message: 'trainee deleted successfully',
-                data: id,
+                data: req.params.id,
                 status: 200,
             });
         } catch (err) {
